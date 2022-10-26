@@ -1,25 +1,19 @@
 <div class="banner">
-  <div class="container">
-    <h1>Our categories</h1>
-    <%= link_to "New movie list", new_list_path, class: "btn btn-light" %>
-  </div>
+  <img class="banner-img" src="https://res-console.cloudinary.com/alan-v-p/thumbnails/v1/image/upload/v1666807443/ZGV2ZWxvcG1lbnQvTW92aWVzX2c4YW1sdw==/preview" alt="movie screen">
+  <h1 class="display-3">Our categories</h1>
+  <%= link_to "New movie list", new_list_path, class: "btn btn-light banner-btn" %>
 </div>
 
 <div class="container text-center">
   <div class="row">
     <% @lists.each do |list| %>
-      <div class="col-4">
+      <div class="col-lg-4 mb-3">
         <div class="list-image d-flex align-items-center justify-content-center"
              style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>') center/cover no-repeat"
         >
-          <%= link_to list.name, list_path(list), class: "link-decor h2"  %>
+          <%= link_to list.name, list_path(list), class: "link-decor display-5"  %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-
-
-
-
-<%= link_to "Home", root_path %>

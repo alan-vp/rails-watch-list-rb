@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :lists, only: %i[index new create show] do
     # nested Bookmarks
     resources :bookmarks, only: %i[new create]
+    resources :reviews, only: %i[index new create]
   end
   # get 'lists', to: 'lists#index'
   # get 'lists/new', to: 'lists#new'

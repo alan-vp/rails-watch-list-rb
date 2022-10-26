@@ -1,10 +1,20 @@
 <%= link_to "Back", lists_path %>
 <%= @list.name %>
 <%= link_to "Add a bookmark", new_list_bookmark_path(@list)  %>
+<%= link_to "Add a review", new_list_review_path(@list) %>
 <%= cl_image_tag @list.photo.key, heigth: 200, width: 300, crop: :fill %>
 
 <% @bookmarks.each do |bookmark| %>
   <p>Title: <%= bookmark.movie.title %></p>
   <p>Comment: <%= bookmark.comment %></p>
   <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+<% end %>
+
+<h3>Movie list reviews:</h3>
+<% if @list.reviews.nil? %>
+  <p><%= "This list has no reviews" %></p>
+<% else %>
+  <% @list.reviews.each do |review| %>
+    <p><%= review.comment %></p>
+  <% end %>
 <% end %>

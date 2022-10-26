@@ -1,3 +1,54 @@
 .banner {
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));
+  max-height: 50vh;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.banner h1 {
+  position: absolute;
+    color: white;
+    top: 45%;
+    right: 50%;
+    margin-right: -130px;
+    width: 260px;
+}
+
+@media screen and (min-width: 768px) {
+  .banner h1 {
+    margin-right: -164px;
+    width: 328px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .banner h1 {
+    margin-right: -210px;
+    width: 420px;
+  }
+}
+
+
+
+.banner-btn {
+  position: absolute;
+  color: red;
+  right: 50%;
+  margin-right: -75px;
+  top: 70%;
+  width: 150px;
+  border-radius: 5px;
+}
+
+.banner-btn-home {
+  position: absolute;
+  color: red;
+  top: 30px;
+  left: 30px;
+  border-radius: 5px;
+}
+
+.banner-img {
+  width: 100%;
 }
