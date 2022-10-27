@@ -1,0 +1,39 @@
+.show-btn {
+  position: absolute;
+  color: red;
+  right: 90%;
+  margin-right: -20px;
+  top: 10%;
+  width: 80px;
+  border-radius: 5px;
+}
+
+.show-list {
+  .card-body {
+    min-height: 320px;
+  }
+
+  .card-img-top {
+    max-height: 250px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .card-body > .card-text {
+    min-height: 150px;
+    border-bottom: solid 1px lightgray;
+  }
+  .comment {
+    margin-bottom: 0;
+  }
+}
+
+.show-comments {
+  .card-body {
+    min-height: 100px;
+  }
+
+  .card-title {
+    border-bottom: solid 1px lightgray;
+  }
+}

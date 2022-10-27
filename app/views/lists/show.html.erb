@@ -1,20 +1,58 @@
-<%= link_to "Back", lists_path %>
-<%= @list.name %>
-<%= link_to "Add a bookmark", new_list_bookmark_path(@list)  %>
-<%= link_to "Add a review", new_list_review_path(@list) %>
-<%= cl_image_tag @list.photo.key, heigth: 200, width: 300, crop: :fill %>
+<div class="banner">
+  <%= link_to "Back", lists_path, class: "btn btn-light show-btn" %>
+  <%= cl_image_tag @list.photo.key, class: "banner-img", heigth: 200, width: 300, crop: :fill %>
+  <h1 class="display-3 text-center"><%= @list.name %></h1>
+</div>
 
-<% @bookmarks.each do |bookmark| %>
-  <p>Title: <%= bookmark.movie.title %></p>
-  <p>Comment: <%= bookmark.comment %></p>
-  <%= link_to "Delete", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-<% end %>
+<div class="row show-comments mb-5">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-10">
+    <div class="d-flex justify-content-end mb-2">
+      <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-gradient"  %>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title text-center h4"><%= @list.name %> list reviews</h4>
+          <%= link_to "Add a review to the list", new_list_review_path(@list), class: "text-decoration-none" %>
+        </div>
+        <% if @list.reviews.empty? %>
+          <h6 class= "card-subtitle mb-2 text-muted"><%= "This list has no reviews" %></h6>
+        <% else %>
+          <% @list.reviews.each do |review| %>
+            <p class="card-text"><i class="fa-solid fa-quote-left"></i> <%= review.comment %> <i class="fa-solid fa-quote-right"></i></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-1"></div>
+</div>
 
-<h3>Movie list reviews:</h3>
-<% if @list.reviews.nil? %>
-  <p><%= "This list has no reviews" %></p>
-<% else %>
-  <% @list.reviews.each do |review| %>
-    <p><%= review.comment %></p>
+<div class="row show-list" >
+  <div class="col-lg-1"></div>
+   <% if @list.bookmarks.empty? %>
+   <p class="col-lg-10"><%= "This list has no movies yet" %></p>
+  <% else %>
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="col-lg-5">
+        <div class="card">
+          <img src="<%= bookmark.movie.poster_url %>" class="card-img-top" alt="movie poster">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title"><%= bookmark.movie.title %></h5>
+              <i class="fa-solid fa-star"> <%= bookmark.movie.rating %></i>
+            </div>
+            <p class="card-text"><%= bookmark.movie.overview %></p>
+            <div>
+              <p>Comments:</p>
+              <p class="card-text comment"><%= bookmark.comment %></p>
+              <%= link_to "Delete comment", bookmark_path(bookmark), class: "text-decoration-none", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+  <div class="col-lg-1"></div>
+</div>

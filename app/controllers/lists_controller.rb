@@ -18,7 +18,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    @bookmarks = @list.bookmarks
+    # @bookmarks = @list.bookmarks Es innecesaria porque en el modelo ya existe esta asociación gracias al "has_many"
   end
 
   private
